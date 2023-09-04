@@ -103,10 +103,12 @@
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            document.querySelector('#resultDisplay').innerHTML = `예상결과: ${data.result}`;
+        
         })
-    
-    
-    
+        .catch(error => console.error(error))
+
+
     });
 
 </script>
