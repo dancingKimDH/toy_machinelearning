@@ -29,8 +29,7 @@
 - 전처리 전의 값
 
 <style>
-.table tr:nth-child(1) { background: green; }
-  
+ .table tr:nth-child(1) { background: green; }
 </style>
   
 <div class="table">
