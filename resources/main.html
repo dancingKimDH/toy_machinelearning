@@ -18,9 +18,9 @@
             <!-- Texture Mean Input -->
             <div class="mb-3">
                 <label for="hypertension" class="form-label">고혈압여부:</label>
-                <input type="radio" name="hypertension" id="hypertension_yes" value="1">
+                <input type="radio" name="hypertension" id="hypertension" value="1">
                 <label for="hypertension_yes">예</label>
-                <input type="radio" name="hypertension" id="hypertension_no" value="0">
+                <input type="radio" name="hypertension" id="hypertension" value="0">
                 <label for="hypertension_no">아니오</label>
 
             </div>
@@ -28,9 +28,9 @@
             <!-- Perimeter Mean Input -->
             <div class="mb-3">
                 <label for="gender" class="form-label">성별:</label>
-                <input type="radio" name="gender" id="male" value="0" data-encoded = "성별_1">
+                <input type="radio" name="gender" id="male" value="0" data-encoded="성별_1">
                 <label for="male">남성</label>
-                <input type="radio" name="gender" id="female" value="1" data-encoded = "성별_2">
+                <input type="radio" name="gender" id="female" value="1" data-encoded="성별_2">
                 <label for="female">여성</label>
 
             </div>
@@ -76,19 +76,47 @@
     predictObject.addEventListener('click', (event) => {
         event.preventDefault();
         let hypertension = document.querySelector('input[name="hypertension"]:checked').value;
+        if (hypertension == 1) {
+            hypertension_0 = 0;
+            hypertension_1 = 1;
+        } else {
+            hypertension_0 = 1;
+            hypertension_1 = 0;
+        }
+
         let gender = document.querySelector('input[name="gender"]:checked').value;
+
+        if (gender == 0) {
+            gender_1 = 1;
+            gender_2 = 0;
+        } else {
+            gender_1 = 0;
+            gender_2 = 1;
+        }
         let liver_status = document.querySelector('input[name="liver_status"]:checked').value;
+
+        if (liver_status == 1) {
+            liver_status_0 = 0;
+            liver_status_1 = 1;
+        } else {
+            liver_status_0 = 1;
+            liver_status_1 = 0;
+        }
+
         let age = document.querySelector('#age_input').value;
         let weight = document.querySelector('#weight_input').value;
         let surgery_duration = document.querySelector('#surgery_duration_input').value;
-    
+
         let request_dict = {
-            "hypertension" : hypertension,
-            "gender" : gender,
-            "liver_status" : liver_status,
-            "age" : age,
-            "weight" : weight,
-            "surgery_duration" : surgery_duration
+            "고혈압여부_0": hypertension_0,
+            "고혈압여부_1": hypertension_1,
+            "성별_1": gender_1,
+            "성별_2": gender_2,
+            "신부전여부_0": liver_status_0,
+            "신부전여부_1": liver_status_1,
+            "age": age,
+            "weight": weight,
+            "surgery_duration": surgery_duration
         };
 
         fetch(url, {
@@ -100,13 +128,13 @@
             body: JSON.stringify(request_dict)
         })
 
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            document.querySelector('#resultDisplay').innerHTML = `예상결과: ${data.result}`;
-        
-        })
-        .catch(error => console.error(error))
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.querySelector('#resultDisplay').innerHTML = `예상결과: ${data.result}`;
+
+            })
+            .catch(error => console.error(error))
 
 
     });
