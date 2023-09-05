@@ -108,18 +108,18 @@
         let surgery_duration = document.querySelector('#surgery_duration_input').value;
 
         let request_dict = {
-            "고혈압여부_0": hypertension_0,
-            "고혈압여부_1": hypertension_1,
-            "성별_1": gender_1,
-            "성별_2": gender_2,
-            "신부전여부_0": liver_status_0,
-            "신부전여부_1": liver_status_1,
+            "hypertension_0": hypertension_0,
+            "hypertension_1": hypertension_1,
+            "gender_1": gender_1,
+            "gender_2": gender_2,
+            "liver_status_0": liver_status_0,
+            "liver_status_1": liver_status_1,
             "age": age,
             "weight": weight,
             "surgery_duration": surgery_duration
         };
 
-        fetch(url, {
+        fetch('http://127.0.0.1:8000/api_v1/mlmodelwithregression', {
 
             method: 'POST',
             headers: {
