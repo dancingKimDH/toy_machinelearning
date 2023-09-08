@@ -103,14 +103,14 @@ model.predict(feature)
 # apply()
 import numpy as np
 def convert_notnull(row) :
-    if pd.isnull(row) : # 변수 row의 값이 null이라면
+    if np.isnan(row['수술시간'])  : # 변수 row의 값이 null이라면
         feature = df_ROS_select[['성별']]
         result = model.predict(feature)
-        return result
+        return result[0]
     else :
-        return row  # null이 아니면 원래 데이터 값 반환
+        return row['수술시간']  # null이 아니면 원래 데이터 값 반환
 
-df_ROS_select['수술시간'] = df_ROS_select['수술시간'].apply(convert_notnull)
+df_ROS_select['수술시간'] = df_ROS_select.apply(convert_notnull, axis=1)
 df_ROS_select['수술시간']
 
 # apply() 적용 후 null값 확인
