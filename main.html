@@ -71,75 +71,40 @@
 </body>
 
 <script>
-
     let predictObject = document.querySelector('#predict')
     predictObject.addEventListener('click', (event) => {
-        event.preventDefault();
+        event.preventDefault(); 
         let hypertension = document.querySelector('input[name="hypertension"]:checked').value;
-        if (hypertension == 1) {
-            hypertension_0 = 0;
-            hypertension_1 = 1;
-        } else {
-            hypertension_0 = 1;
-            hypertension_1 = 0;
-        }
-
         let gender = document.querySelector('input[name="gender"]:checked').value;
-
-        if (gender == 0) {
-            gender_1 = 1;
-            gender_2 = 0;
-        } else {
-            gender_1 = 0;
-            gender_2 = 1;
-        }
         let liver_status = document.querySelector('input[name="liver_status"]:checked').value;
-
-        if (liver_status == 1) {
-            liver_status_0 = 0;
-            liver_status_1 = 1;
-        } else {
-            liver_status_0 = 1;
-            liver_status_1 = 0;
-        }
-
         let age = document.querySelector('#age_input').value;
         let weight = document.querySelector('#weight_input').value;
         let surgery_duration = document.querySelector('#surgery_duration_input').value;
 
         let request_dict = {
-            "hypertension_0": hypertension_0,
-            "hypertension_1": hypertension_1,
-            "gender_1": gender_1,
-            "gender_2": gender_2,
-            "liver_status_0": liver_status_0,
-            "liver_status_1": liver_status_1,
+            "hypertension": hypertension,
+            "gender": gender,
+            "liver_status": liver_status,
             "age": age,
             "weight": weight,
             "surgery_duration": surgery_duration
         };
 
         fetch('http://127.0.0.1:8000/api_v1/mlmodelwithregression', {
-
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(request_dict)
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(request_dict)
         })
-
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                document.querySelector('#resultDisplay').innerHTML = `예상결과: ${data.result}`;
-
-            })
-            .catch(error => console.error(error))
-
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.querySelector('#resultDisplay').innerHTML = `예상결과 : ${data.result_mean}`;
+        })
+        .catch(error => console.error(error))
 
     });
-
 </script>
-
 
 </html>

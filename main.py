@@ -52,14 +52,14 @@ def mlmodelwithregression(data:dict) :
         pass
 
     result_predict = 0
-    # 학습 모델 불러와 예측
-    with open('datasets/RecurrenceOfSurgery_scaling.pkl', 'rb') as regression_file:
-        loaded_model = pickle.load(regression_file)
-        input_labels = [[hypertension_0, hypertension_1, gender_1, gender_2, liver_status_0, liver_status_1, age, weight, surgery_duration]] # 학습했던 설명변수 형식 맞게 적용
+    # best model 불러와 예측
+    with open('datasets/RecurrenceOfSurgery_best_model.pkl', 'rb') as bestmodel_file:
+        loaded_model = pickle.load(bestmodel_file)
+        input_labels = [['','','']] # 학습했던 설명변수 형식 맞게 적용
         result_predict = loaded_model.predict(input_labels)
-        print('Predict radius_mean Result : {}'.format(result_predict))
+        print('Predict Final Result : {}'.format(result_predict))
         pass
 
     # 예측값 리턴
-    result = {'radius_mean':result_predict[0]}
+    result = {'result_mean':result_predict[0]}
     return result
