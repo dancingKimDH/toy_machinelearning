@@ -26,28 +26,30 @@ def mlmodelwithregression(data:dict) :
     print('data with dict {}'.format(data))
     
     # data dict to 변수 할당
-    hypertension = float(data['고혈압여부'])
-    gender = float(data['성별'])
-    liver_status = float(data['신부전여부'])
-    age = float(data['연령'])
-    weight = float(data['체중'])
-    surgery_duration = float(data['수술기간'])
+    hypertension = float(data['hypertension'])
+    gender = float(data['gender'])
+    liver_status = float(data['liver_status'])
+    age = float(data['age'])
+    weight = float(data['weight'])
+    surgery_duration = float(data['surgery_duration'])
 
     # pkl 파일 존재 확인 코드 필요
+    import numpy as np
 
     # OneHotEncoding.pkl 불러오기
     with open('datasets/RecurrenceOfSurgery_encoding.pkl', 'rb') as encoding_file:
         loaded_model = pickle.load(encoding_file)
-        input_encoding_labels = [['hypertension', 'gender', 'liver_status']] # 학습했던 설명변수 형식 맞게 적용
-        result_predict1 = loaded_model.predict(input_scaler_labels)
+        input_encoding_labels = [[hypertension, gender, liver_status]] # 학습했던 설명변수 형식 맞게 적용
+        result_predict1 = loaded_model.transform(input_encoding_labels)
         print('Predict Encoding Result : {}'.format(result_predict1))
         pass
 
+    result_predict1_dense = result_predict1.toarray()
     # scaling.pkl 불러오기
     with open('datasets/RecurrenceOfSurgery_scaling.pkl', 'rb') as scaling_file:
         loaded_model = pickle.load(scaling_file)
-        input_scaler_labels = [['age', 'weight', 'surgery_duration']] # 학습했던 설명변수 형식 맞게 적용
-        result_predict2 = loaded_model.predict(input_scaler_labels)
+        input_scaler_labels = [[age, weight, surgery_duration]+list(result_predict1_dense[0])] # 학습했던 설명변수 형식 맞게 적용
+        result_predict2 = loaded_model.transform(input_scaler_labels)
         print('Predict Scaler Result : {}'.format(result_predict2))
         pass
 
@@ -55,7 +57,7 @@ def mlmodelwithregression(data:dict) :
     # best model 불러와 예측
     with open('datasets/RecurrenceOfSurgery_best_model.pkl', 'rb') as bestmodel_file:
         loaded_model = pickle.load(bestmodel_file)
-        input_labels = [['','','']] # 학습했던 설명변수 형식 맞게 적용
+        input_labels = np.array(result_predict2) # 학습했던 설명변수 형식 맞게 적용
         result_predict = loaded_model.predict(input_labels)
         print('Predict Final Result : {}'.format(result_predict))
         pass

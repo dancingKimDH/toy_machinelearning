@@ -74,9 +74,9 @@
     let predictObject = document.querySelector('#predict')
     predictObject.addEventListener('click', (event) => {
         event.preventDefault(); 
-        let hypertension = document.querySelector('input[name="hypertension"]:checked').value;
-        let gender = document.querySelector('input[name="gender"]:checked').value;
-        let liver_status = document.querySelector('input[name="liver_status"]:checked').value;
+        let hypertension = document.querySelector('#hypertension').value;
+        let gender = document.querySelector('#gender').value;
+        let liver_status = document.querySelector('#liver_status').value;
         let age = document.querySelector('#age_input').value;
         let weight = document.querySelector('#weight_input').value;
         let surgery_duration = document.querySelector('#surgery_duration_input').value;
