@@ -63,5 +63,5 @@ def mlmodelwithregression(data:dict) :
         pass
 
     # 예측값 리턴
-    result = {'result_mean':result_predict[0]}
+    result = dict({'result_mean':result_predict[0]})
     return result
