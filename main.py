@@ -48,7 +48,7 @@ def mlmodelwithregression(data:dict) :
     # scaling.pkl 불러오기
     with open('datasets/RecurrenceOfSurgery_scaling.pkl', 'rb') as scaling_file:
         loaded_model = pickle.load(scaling_file)
-        input_scaler_labels = [[age, weight, surgery_duration]+list(result_predict1_dense[0])] # 학습했던 설명변수 형식 맞게 적용
+        input_scaler_labels = [[age, weight, surgery_duration]+list(result_predict1_dense[0])] 
         result_predict2 = loaded_model.transform(input_scaler_labels)
         print('Predict Scaler Result : {}'.format(result_predict2))
         pass
@@ -57,7 +57,7 @@ def mlmodelwithregression(data:dict) :
     # best model 불러와 예측
     with open('datasets/RecurrenceOfSurgery_best_model.pkl', 'rb') as bestmodel_file:
         loaded_model = pickle.load(bestmodel_file)
-        input_labels = np.array(result_predict2) # 학습했던 설명변수 형식 맞게 적용
+        input_labels = np.array(result_predict2) 
         result_predict = loaded_model.predict(input_labels)
         print('Predict Final Result : {}'.format(result_predict))
         pass
