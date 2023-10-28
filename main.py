@@ -36,6 +36,8 @@ def mlmodelwithregression(data:dict) :
     # pkl 파일 존재 확인 코드 필요
     import numpy as np
 
+    print(np.__version__)
+
     # OneHotEncoding.pkl 불러오기
     with open('datasets/RecurrenceOfSurgery_encoding.pkl', 'rb') as encoding_file:
         loaded_model = pickle.load(encoding_file)

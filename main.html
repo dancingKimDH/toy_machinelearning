@@ -28,34 +28,34 @@
             <!-- Perimeter Mean Input -->
             <div class="mb-3">
                 <label for="gender" class="form-label">성별:</label>
-                <input type="radio" name="gender" id="male" value="0" data-encoded="성별_1">
+                <input type="radio" name="gender" id="gender" value="1">
                 <label for="male">남성</label>
-                <input type="radio" name="gender" id="female" value="1" data-encoded="성별_2">
+                <input type="radio" name="gender" id="gender" value="2">
                 <label for="female">여성</label>
 
             </div>
 
             <div class="mb-3">
                 <label for="liver_status" class="form-label">신부전여부:</label>
-                <input type="radio" name="liver_status" id="liver_status_yes" value="1">
+                <input type="radio" name="liver_status" id="liver_status" value="1">
                 <label for="liver_status_yes">예</label>
-                <input type="radio" name="liver_status" id="liver_status_no" value="0">
+                <input type="radio" name="liver_status" id="liver_status" value="0">
                 <label for="liver_status_no">아니오</label>
             </div>
 
             <div class="mb-3">
                 <label for="age_input" class="form-label">연령:</label>
-                <input type="text" class="form-control" id="age_input" name="age" required>
+                <input type="text" class="form-control" id="age" name="age" required>
             </div>
 
             <div class="mb-3">
                 <label for="weight_input" class="form-label">체중:</label>
-                <input type="text" class="form-control" id="weight_input" name="weight" required>
+                <input type="text" class="form-control" id="weight" name="weight" required>
             </div>
 
             <div class="mb-3">
                 <label for="surgery_duration_input" class="form-label">수술시간:</label>
-                <input type="text" class="form-control" id="surgery_duration_input" name="surgery_duration" required>
+                <input type="text" class="form-control" id="surgery_duration" name="surgery_duration" required>
             </div>
 
             <!-- Submit Button -->
@@ -77,9 +77,9 @@
         let hypertension = document.querySelector('#hypertension').value;
         let gender = document.querySelector('#gender').value;
         let liver_status = document.querySelector('#liver_status').value;
-        let age = document.querySelector('#age_input').value;
-        let weight = document.querySelector('#weight_input').value;
-        let surgery_duration = document.querySelector('#surgery_duration_input').value;
+        let age = document.querySelector('#age').value;
+        let weight = document.querySelector('#weight').value;
+        let surgery_duration = document.querySelector('#surgery_duration').value;
 
         let request_dict = {
             "hypertension": hypertension,
