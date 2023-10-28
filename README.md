@@ -54,7 +54,8 @@
 ![image](https://github.com/dancingKimDH/toy_machinelearning/assets/132973368/7f5ac0ae-fe88-4c49-97f3-1e2fa3498ce2)
 
 - 값 입력 후 결과 출력
-![image](https://github.com/aabchyein/toy_machinelearning/assets/132973368/878791a0-ae4b-40e3-b5ee-892a595108a7)
+![image](https://github.com/dancingKimDH/toy_machinelearning/assets/132973368/963e7436-57a3-441b-85ce-add6aeb754fe)
+
 <br>
 
 ## 💜느낀점
